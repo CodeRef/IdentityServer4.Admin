@@ -172,7 +172,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
         private static LoginConfiguration GetLoginConfiguration(IConfiguration configuration)
         {
             var loginConfiguration = configuration.GetSection(nameof(LoginConfiguration)).Get<LoginConfiguration>();
-            
+
             // Cannot load configuration - use default configuration values
             if (loginConfiguration == null)
             {
@@ -222,6 +222,7 @@ namespace Skoruba.IdentityServer4.STS.Identity.Helpers
                 })
                 .AddAspNetIdentity<TUserIdentity>()
                 .AddIdentityServerStoresWithDbContexts<TConfigurationDbContext, TPersistedGrantDbContext>(configuration);
+                //.AddProfileService<ProfileService>();
 
             builder.AddCustomSigningCredential(configuration, logger);
             builder.AddCustomValidationKey(configuration, logger);
